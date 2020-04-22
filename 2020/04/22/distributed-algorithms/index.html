@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="Distributed Algorithms, Reflections">
     <meta name="description" content="recording random thoughts and reflections">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,11 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
-    <header class="navbar-fixed">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -507,14 +507,18 @@
 <li>parallel slowdown: processors need to communicate with each other in many cases, this often slow down the efficiency as a single processor doesn’t need to communicate with itself</li>
 </ul>
 <p>Although with the above disadvantages, if we design carefully we can still benefit from parallel computing. Before we go into details about distributed algorithms, we need to specify how can we analyze its efficiency, does it remain the same as single processor case?</p>
-<h2 id="s"><a href="#s" class="headerlink" title="s"></a>s</h2><p>For single processor case, we often make the assumption that $time taken \propto number of operations$, however, this is invalid for parallel model: we need to wait for the <strong>slowest</strong> one to complete. We define<br>$$T1 = amount of (wall-clock) time algorithm takes on one processor, and\<br>Tp = amount of (wall-clock) time algorithm takes on p processors.$$</p>
-<p>*<em>Define work: *</em> The work of an algorithm is defined to be the amount of time required<br>complete all computations times the number of processors used.</p>
-<p><em>*Fundamental lower bound Tp</em>: * Note that in the best case, the total work required by the<br>algorithm is evenly divided between the p processors; hence in this case the amount of time taken by each processor is evenly distributed as well. Fundamentally, Tp is lower bounded by<br>$$\frac{T_1}{p} \le T_p$$</p>
-<p>*<em>Representing algorithms as DAG’s: *</em>  Each fundamental unit of computation<br>is represented by a node. We draw a directed arc from node $u$ to node $v$ if computation $u$ is<br>required as an input to computation $v$. The resulting graph is not guaranteed to be connected—<br>it is possible to have calculations that are completely independent of each other. However, each connected component is acyclic and thus must be an anti-aborescence.</p>
+<h2 id="s"><a href="#s" class="headerlink" title="s"></a>s</h2><p>For single processor case, we often make the assumption that $time taken \propto number of operations$, however, this is invalid for parallel model: we need to wait for the <strong>slowest</strong> one to complete. We define</p>
+<script type="math/tex; mode=display">T1 = amount of (wall-clock) time algorithm takes on one processor, and\ 
+Tp = amount of (wall-clock) time algorithm takes on p processors.</script><p><strong>Define work: </strong> The work of an algorithm is defined to be the amount of time required<br>complete all computations times the number of processors used.</p>
+<p><em>*Fundamental lower bound Tp</em>: * Note that in the best case, the total work required by the<br>algorithm is evenly divided between the p processors; hence in this case the amount of time taken by each processor is evenly distributed as well. Fundamentally, Tp is lower bounded by</p>
+<script type="math/tex; mode=display">\frac{T_1}{p} \le T_p</script><p><strong>Representing algorithms as DAG’s: </strong>  Each fundamental unit of computation<br>is represented by a node. We draw a directed arc from node $u$ to node $v$ if computation $u$ is<br>required as an input to computation $v$. The resulting graph is not guaranteed to be connected—<br>it is possible to have calculations that are completely independent of each other. However, each connected component is acyclic and thus must be an anti-aborescence.</p>
 <p>Operations in different layers of a DAG can not be computed in parallel. Without loss<br>of generality, we will assume our DAG is a tree, so the levels of the tree are well defined. Let the root of the tree (i.e. the output of the algorithm) have depth 0, its children depth 1, and so on. Suppose $m_i$ denotes the number of operations (or nodes) performed in level i of the DAG. Each of the $m_i$ operations may be computed concurrently, i.e. no computation depends on another in the same layer. Operations in different levels of the DAG may not be computed in parallel. For any node, the computation cannot begin until all its children have finished their computations.</p>
 <p>So for single processor, we have $T_1 = number of nodes in DAG$. For infinite processors, we have $T_{\inf} = depth of computation DAG$.</p>
-<p>Since<br>$$<br>T_i = \sum_{i=1}^{n} m_i <br>T_p^i (p processors at level i of DAG) = upper_bound(\frac{m_i}{p}) \le \frac{m_i}{p} + 1 <br>then T_p = \sum_{i=1}^n T_p^i \le \frac{T_1}{p} + T_{\inf}<br>$$</p>
-<p>this is called <strong>Brent’s theorem</strong>.</p>
+<p>Since </p>
+<script type="math/tex; mode=display">
+T_i = \sum_{i=1}^{n} m_i \
+T_p^i (p processors at level i of DAG) = upper\_bound(\frac{m_i}{p}) \le \frac{m_i}{p} + 1 \
+then T_p = \sum_{i=1}^n T_p^i \le \frac{T_1}{p} + T_{\inf}</script><p>this is called <strong>Brent’s theorem</strong>.</p>
 
             </div>
             <hr/>
@@ -1024,7 +1028,7 @@ $(function () {
     
     
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
 </body>
