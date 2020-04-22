@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Distributed Algorithms</title>
+      <link href="/2020/04/22/distributed-algorithms/"/>
+      <url>/2020/04/22/distributed-algorithms/</url>
+      
+        <content type="html"><![CDATA[<p><strong>Reference: CME 323 Distributed Algorithms and Optimization from Stanford University</strong></p><h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="Why-parallel-computing"><a href="#Why-parallel-computing" class="headerlink" title="Why parallel computing?"></a>Why parallel computing?</h2><p>Some advantages are</p><ul><li>efficiency: multi-tasks computed in the same time improves efficiency</li><li>scalability: some problems are so large that we cannot solve them using one single processor, however, with many processors we can use non-local machines to solve it</li></ul><p>However, this never means parallel is perfect. Many drawbacks are:</p><ul><li>speed up limit: there can always be some parts of code need to be run sequencially, suppose $p$ percent of code run in parallel, then according to Amdahl’s law, $speed up &lt; \frac{1}{1-p}$.</li><li>complexity: <ul><li>hard to design: data dependency, race conditions, sync problems</li><li>hard to debug</li></ul></li><li>portability: many APIs to use</li><li>scalability: hardware factors play an important role in scalability, e.g. memory bandwidth, the total amount of memory for each processor etc</li><li>parallel slowdown: processors need to communicate with each other in many cases, this often slow down the efficiency as a single processor doesn’t need to communicate with itself</li></ul><p>Although with the above disadvantages, if we design carefully we can still benefit from parallel computing. Before we go into details about distributed algorithms, we need to specify how can we analyze its efficiency, does it remain the same as single processor case?</p><h2 id="s"><a href="#s" class="headerlink" title="s"></a>s</h2><p>For single processor case, we often make the assumption that $time taken \propto number of operations$, however, this is invalid for parallel model: we need to wait for the <strong>slowest</strong> one to complete. We define<br>$$T1 = amount of (wall-clock) time algorithm takes on one processor, and\<br>Tp = amount of (wall-clock) time algorithm takes on p processors.$$</p><p>*<em>Define work: *</em> The work of an algorithm is defined to be the amount of time required<br>complete all computations times the number of processors used.</p><p><em>*Fundamental lower bound Tp</em>: * Note that in the best case, the total work required by the<br>algorithm is evenly divided between the p processors; hence in this case the amount of time taken by each processor is evenly distributed as well. Fundamentally, Tp is lower bounded by<br>$$\frac{T_1}{p} \le T_p$$</p><p>*<em>Representing algorithms as DAG’s: *</em>  Each fundamental unit of computation<br>is represented by a node. We draw a directed arc from node $u$ to node $v$ if computation $u$ is<br>required as an input to computation $v$. The resulting graph is not guaranteed to be connected—<br>it is possible to have calculations that are completely independent of each other. However, each connected component is acyclic and thus must be an anti-aborescence.</p><p>Operations in different layers of a DAG can not be computed in parallel. Without loss<br>of generality, we will assume our DAG is a tree, so the levels of the tree are well defined. Let the root of the tree (i.e. the output of the algorithm) have depth 0, its children depth 1, and so on. Suppose $m_i$ denotes the number of operations (or nodes) performed in level i of the DAG. Each of the $m_i$ operations may be computed concurrently, i.e. no computation depends on another in the same layer. Operations in different levels of the DAG may not be computed in parallel. For any node, the computation cannot begin until all its children have finished their computations.</p><p>So for single processor, we have $T_1 = number of nodes in DAG$. For infinite processors, we have $T_{\inf} = depth of computation DAG$.</p><p>Since<br>$$<br>T_i = \sum_{i=1}^{n} m_i <br>T_p^i (p processors at level i of DAG) = upper_bound(\frac{m_i}{p}) \le \frac{m_i}{p} + 1 <br>then T_p = \sum_{i=1}^n T_p^i \le \frac{T_1}{p} + T_{\inf}<br>$$</p><p>this is called <strong>Brent’s theorem</strong>.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> algorithms </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>古希腊哲学史</title>
       <link href="/2020/04/01/gu-xi-la-zhe-xue-shi/"/>
       <url>/2020/04/01/gu-xi-la-zhe-xue-shi/</url>
